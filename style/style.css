@@ -1,0 +1,28 @@
+body{
+background-color: rgb(6, 6, 53);
+color: aliceblue;
+}
+nav{
+    display: flex;
+    padding: 1.5rem 14rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: .1rem solid rgba(245, 245, 245, 0.449);
+}
+ul{
+   display: flex;
+   list-style: none;
+   gap:2.5rem; 
+}
+.baton{
+    padding: .5rem  1rem;
+    font-weight: 600;
+    font-size:small;
+    border-radius: 50px;
+    color: aliceblue;
+    border-style: none;
+    background-image: linear-gradient(to left bottom ,rgb(102, 0, 255),rgb(255, 0, 179),rgba(249, 249, 8, 0.703));
+}
+.hide{
+    display: none;
+}
