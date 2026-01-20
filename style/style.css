@@ -2,9 +2,12 @@ body{
 background-color: rgb(6, 6, 53);
 color: aliceblue;
 }
+p,li,h3,h4{
+    color:rgba(240, 248, 255, 0.548);
+}
 nav{
     display: flex;
-    margin: 1.5rem 14rem;
+    margin: 1.5rem 12rem;
     justify-content: space-between;
     align-items: center;
 }
@@ -124,6 +127,42 @@ gap: 0.2rem;}
   top: 10%;
   left: 70%;
 } 
+.about{
+    margin: 3rem 13rem 6rem 13rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
+    text-align: center;
+}
+.about-c h1{
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+
+}
+.about-c p{
+
+margin: 0rem 16rem;}
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+.cont{
+    
+}
+.cont h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  font-size: 3rem;
+  font-weight:bolder;
+  color: rgb(111, 235, 76);
+}
+.cont i{
+font-size: 30px;
+}
+
+
 @media screen and (max-width:576px) {
     nav ul,
     .m-hide{
@@ -137,20 +176,35 @@ gap: 0.2rem;}
         display: block;
     }
     .b-img{
-        width: 48%;
+        width: 57%;
     }
     .b-img img{
         margin: 5rem 20rem 6rem 5.5rem;
-        width: 32%;
+        width: 42%;
     }
     .p-banner{
-   background-size: cover;   /* ✅ FIX */
+   background-size: cover;  
         background-position: center;
-        height: 84vh;
+        height: 87vh;
             padding: 3rem 0;
         /* background-size: 100%; */
     }
     .banner{
         margin: 0px;
     }
+    .about{
+        margin: 1.5rem ;
+        gap: .5rem;
+        text-align: center;
+    }
+    .container{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 1rem;
+    }
+    .about-c p{
+        margin: .3rem;
+    }
+    .cont h3{
+     text-align: center;}
 }
