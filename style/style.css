@@ -162,6 +162,71 @@ margin: 0rem 16rem;}
 font-size: 30px;
 }
 
+.why{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.why h1{
+text-align: center;
+font-size: 3rem;
+}
+.items{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,15rem);
+    margin: 0rem 12rem;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+.item1{
+    grid-column:span 1;
+    grid-row: span 2;
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+    padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
+.item2{
+    grid-column:span 2;
+    grid-row: span 1;
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+     padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
+.item3{
+    grid-column:span 2;
+    grid-row: span 1;
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+     padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
+.item4{
+    grid-column:span 1;
+    grid-row: span 1;
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+     padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
 
 @media screen and (max-width:576px) {
     nav ul,
@@ -207,4 +272,52 @@ font-size: 30px;
     }
     .cont h3{
      text-align: center;}
+     .items{
+display: flex;
+flex-direction: column;
+gap: .5rem;
+margin: 1rem;
+}
+.item1{
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+    padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
+.item2{
+
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+     padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
+.item3{
+
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+     padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
+.item4{
+    background-color: rgba(13, 13, 98, 0.352);
+    border-radius: 2rem;
+     padding:2.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    gap: 1rem;
+}
 }
