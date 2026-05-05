@@ -1,146 +1,292 @@
-## 🌟 WELCOME TO ( সহজ সরল সিম্পল ) ASSIGNMENT-002 😎
+# 🌞 SuunyMart — Summer eCommerce Platform
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/TailwindCSS-4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" />
+  <img src="https://img.shields.io/badge/DaisyUI-5-5A0EF8?style=for-the-badge" alt="DaisyUI" />
+  <img src="https://img.shields.io/badge/BetterAuth-1.6-FF6F00?style=for-the-badge" alt="BetterAuth" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel" alt="Vercel" />
+</p>
+
+<p align="center">
+  <a href="https://suunymart-orpin.vercel.app/"><img src="https://img.shields.io/badge/🌐%20Live%20Site-Visit%20Now-success?style=for-the-badge" alt="Live site" /></a>
+  <a href="https://github.com/shihab-5/suunymart"><img src="https://img.shields.io/badge/📂%20Repository-View%20Code-blue?style=for-the-badge" alt="Repo" /></a>
+</p>
 
 ---
 
-📅 Deadline For 60 marks: 20th January, 2026 (11:59 pm ⏱️)
+## 📌 Project Name
 
-📅 Deadline For 50 marks: 21th January, 2026 (11:59 pm ⏱️)
+**SuunyMart** — a modern summer-themed eCommerce platform.
 
-📅 Deadline For 30 marks: Any time after 21th January.
+## 🎯 Purpose
 
-# TechWave - Podcast Website
+SuunyMart lets users explore and purchase seasonal products such as sunglasses, summer outfits, skincare, and beach accessories. Visitors can browse the catalog, view popular picks, read product details, and place orders **after authentication**. The project demonstrates a clean Next.js App Router setup with server-side session checks, route protection via Next.js middleware, and a full BetterAuth (email/password + Google) authentication flow backed by MongoDB.
 
-## ❓ Common Questions & Answers
+## 🌐 Live URL
 
-**Can I use different images?**
-
-- Yes, you may use any relevant images.
-
-**Can I change the alignment and design freely?**
-
-- No. You must follow the alignment and layout shown in the Figma design.
-
-**Can I change colors?**
-
-- Yes, as long as the colors are relevant and visually consistent.
-
-**Do I need to make the page pixel-perfect?**
-
-- No. You can use your own margin and padding while following the overall structure from Figma.
+- **Production:** https://suunymart-orpin.vercel.app/
+- **Repository:** https://github.com/shihab-5/suunymart
 
 ---
 
-## 📌 Assignment Requirements
+## ✨ Key Features
 
-### ✅ Main Requirements (50 Marks)
+### 🧭 Navigation & Layout
+- Persistent **Navbar + Footer** wrapping every route via the App Router root layout (`src/app/layout.js`).
+- Dynamic Navbar:
+  - **Logged out:** Login button.
+  - **Logged in:** User avatar, greeting, and Logout button.
+- Mobile-friendly responsive menu using DaisyUI dropdown.
 
-### Navbar
+### 🏠 Home Page (`/`)
+- 🌅 **Hero banner** highlighting the summer sale.
+- 🔥 **Popular Products** — pulls the first 3 products from `data.json` and renders them as cards with image, name, rating, price, and a *View Details* button.
+- 💡 **Summer Care Tips** section.
+- 🏷 **Top Brands** section.
+- ✨ Lightweight CSS animations powered by `animate.css`.
 
-- **Desktop/Laptop/Large Device:**
-  - Logo on the Left
-  - Menu Items in the Center (like Figma design)
-  - Gradient Button on the Right
-- **Mobile Device:**
-  - Hidden nav items with hamburger menu icon
-  - Fully responsive navigation
+### 📦 Products
+- All products listed at **`/products`** (publicly accessible, fetched at request time from `data.json`).
+- Product cards show image, name, rating, price, and a *View Details* CTA.
+- Static product data lives in `public/data.json`.
 
-### Banner Section
+### 🔒 Protected Product Details (`/products/[id]`)
+- Implemented via **Next.js middleware** (`src/middleware.js`) that calls `auth.api.getSession()` from BetterAuth.
+- Unauthenticated visitors are redirected to `/login`.
+- Matcher protects `/profile` and `/products/<id>` (the `[id]` slug) **without** blocking the public `/products` listing.
 
-- **Desktop/Laptop/Large Device:**
-  - Background Image
-  - Center-aligned podcast circle view with visual effects
-  - Relevant heading and descriptive text at center
-  - Two call-to-action buttons below the text
-- **Mobile Device:**
-  - Mobile responsive layout matching Figma design
+### 🔐 Authentication (BetterAuth + MongoDB)
+- **Email + Password** login & registration.
+- **Google OAuth** (Sign in / Sign up with Google).
+- Session-aware UI on both server and client:
+  - Server components use `auth.api.getSession({ headers: await headers() })`.
+  - Client components use `authClient.useSession()` from `better-auth/react`.
+- Auth handler mounted at `src/app/api/auth/[...all]/route.js` via `toNextJsHandler(auth)`.
+- MongoDB session/user persistence via `@better-auth/mongo-adapter`.
 
+### 👤 Profile (`/profile`) — Protected
+- Displays the logged-in user's avatar, name, and email.
+- **Edit Profile** modal (DaisyUI dialog) for updating **name** and **profile image URL** using `authClient.updateUser()` (per the [BetterAuth Update User docs](https://better-auth.com/docs/concepts/users-accounts#update-user)).
 
-### About Section
-
-- **Desktop/Laptop/Large Device:**
-  - Heading with descriptive text at the top
-  - 4 statistics items displayed in a row with proper styling
-- **Mobile Device:**
-  - 4 statistics items responsive layout (2x2 grid stacked on mobile)
-
-### Why Choose Section
-
-- **Desktop/Laptop/Large Device:**
-  - 5 feature cards layout matching Figma design
-  - Each card contains: icon, title, and description
-- **Mobile Device:**
-  - Fully responsive card layout
-  - Single column layout on mobile devices
-
-### Featured Episodes Section
-
-- **Desktop/Laptop/Large Device:**
-  - 3 featured episode cards layout
-  - Each card includes: title, description, and duration
-  - YouTube video links embedded in cards
-- **Mobile Device:**
-  - Responsive card layout for mobile devices
-
-### Footer Section
-
-- **Desktop/Laptop/Large Device:**
-  - Center-aligned layout with brand and platform information
-  - Copyright information with horizontal line separator
-- **Mobile Device:**
-  - Responsive footer layout maintaining readability
+### 🎨 UI / UX
+- Tailwind CSS v4 + DaisyUI v5 for styling and components.
+- Fully responsive across mobile, tablet, and desktop breakpoints.
+- React Icons (`react-icons`) for consistent iconography.
+- Lightweight entrance animations via `animate.css`.
 
 ---
 
-## 🚀 CHALLENGES (10 Marks)
+## 🛠 Tech Stack
 
-### Host Section
-
-- **Desktop/Laptop/Large Device:**
-  - Image on the left with host name, biography, and social media icons
-  - Professional layout with proper alignment
-- **Mobile Device:**
-  - Responsive layout with stacked design for mobile view
-
-### Additional Challenges
-
-- Implement smooth animations on any buttons or sections for enhanced user experience
-- Minimum 5 commits on GitHub with meaningful commit messages
-- No Lorem Ipsum content - use relevant, meaningful text
-- "New" badge in the podcast circle view positioned exactly as per Figma design
-
----
-
-### Responsive Breakpoints
-
-- **Small device:** up to 576 px 
-- **Medium Device:** 576px to 992 px (Optional)
-- **Large Device:** above 992 px 
-
+| Layer            | Technology                                    |
+| ---------------- | --------------------------------------------- |
+| Framework        | **Next.js 16** (App Router)                   |
+| UI Library       | **React 19**                                  |
+| Styling          | **Tailwind CSS v4**                           |
+| Components       | **DaisyUI v5**                                |
+| Authentication   | **BetterAuth** + **@better-auth/mongo-adapter** |
+| Database         | **MongoDB** (Atlas-compatible)                |
+| Forms            | **react-hook-form**                           |
+| Icons            | **react-icons**                               |
+| Animations       | **animate.css**                               |
+| Marquee          | **react-fast-marquee**                        |
+| Deployment       | **Vercel**                                    |
 
 ---
 
-## 🛠️ Tech Stack
+## 📦 NPM Packages
 
-- HTML5
-- CSS3/Tailwind CSS
-- No JavaScript
+All packages are pinned in [`package.json`](./package.json).
+
+### Runtime dependencies
+| Package                       | Purpose                                          |
+| ----------------------------- | ------------------------------------------------ |
+| `next`                        | React framework with App Router & middleware     |
+| `react`, `react-dom`          | UI runtime                                       |
+| `better-auth`                 | Authentication (email/password + Google OAuth)   |
+| `@better-auth/mongo-adapter`  | MongoDB adapter for BetterAuth                   |
+| `mongodb`                     | Official MongoDB Node.js driver                  |
+| `react-hook-form`             | Form state management & validation               |
+| `react-icons`                 | Icon set (`FaStar`, `FaEdit`, etc.)              |
+| `react-fast-marquee`          | Scrolling marquee for brand/banner sections      |
+| `animate.css`                 | Drop-in CSS animation classes                    |
+
+### Dev dependencies
+| Package                | Purpose                            |
+| ---------------------- | ---------------------------------- |
+| `tailwindcss`          | Utility-first CSS                  |
+| `@tailwindcss/postcss` | PostCSS plugin for Tailwind v4     |
+| `daisyui`              | Component library on top of Tailwind |
+| `eslint`               | Linting                            |
+| `eslint-config-next`   | Next.js ESLint preset              |
 
 ---
 
-## ✅ Submission Checklist
+## 📂 Folder Structure
 
-- Figma layout followed correctly
-- Proper alignment and spacing
-- Clean and readable HTML & CSS
-- Each Section are responsive with proper breakpoints
-- Live site deployed
-- Public GitHub repository
+```
+suunymart/
+├── public/
+│   ├── data.json              # Static product catalog (6+ products)
+│   ├── banner.png
+│   ├── logo.png
+│   └── *.svg
+├── src/
+│   ├── middleware.js          # Route protection (BetterAuth session check)
+│   ├── lib/
+│   │   ├── auth.js            # BetterAuth server config (Mongo + Google)
+│   │   └── auth-client.js     # BetterAuth React client (useSession, signIn…)
+│   ├── component/
+│   │   ├── nav.jsx            # Top navbar (auth-aware)
+│   │   ├── footer.jsx
+│   │   ├── Navlink.jsx        # Active-aware nav link
+│   │   ├── Popular.jsx        # Home: top 3 popular products
+│   │   ├── Tips.jsx           # Home: summer care tips
+│   │   ├── Top-brands.jsx     # Home: featured brands
+│   │   └── Update.jsx         # Profile update modal
+│   └── app/
+│       ├── layout.js          # Root layout (Nav + Footer wrapper)
+│       ├── page.jsx           # Home (/)
+│       ├── loading.jsx        # Global loading UI
+│       ├── not-found.jsx      # 404 page
+│       ├── login/page.jsx     # /login
+│       ├── register/page.jsx  # /register
+│       ├── profile/page.jsx   # /profile (protected)
+│       ├── products/
+│       │   ├── page.jsx       # /products (public listing)
+│       │   └── [id]/page.jsx  # /products/[id] (protected detail)
+│       └── api/
+│           └── auth/[...all]/route.js  # BetterAuth Next.js handler
+├── eslint.config.mjs
+├── next.config.mjs
+├── postcss.config.mjs
+├── tailwind.config.mjs
+├── jsconfig.json
+└── package.json
+```
 
 ---
 
-## 📂 Submission Format
+## 🛡 Route Protection (Middleware)
 
-- **GitHub Repository Link**
-- **Live Website Link (GitHub Pages)**
+`src/middleware.js` runs on every request that matches `config.matcher`. It calls BetterAuth's `auth.api.getSession()` with the incoming request headers:
+
+- If a session exists → `NextResponse.next()` (request continues).
+- If no session → `NextResponse.redirect('/login')`.
+
+```js
+// src/middleware.js
+export const config = {
+  matcher: ["/profile", "/products/:id+"],
+};
+```
+
+The matcher uses `/products/:id+` (one-or-more path segments) so:
+
+| Route              | Protected? |
+| ------------------ | ---------- |
+| `/`                | ❌ public |
+| `/products`        | ❌ public (listing stays open) |
+| `/products/123`    | ✅ protected (the `[id]` slug detail) |
+| `/profile`         | ✅ protected |
+| `/login`, `/register` | ❌ public |
+
+> ⚠️ **Important:** Next.js only recognizes a file named `middleware.{js,ts}` at the project (or `src/`) root, exporting a function literally named `middleware` (or `default`). Any other name silently becomes dead code.
 
 ---
+
+## ⚙️ Local Development
+
+### Prerequisites
+- Node.js 18.18+ (Next.js 16 recommends Node 20+)
+- A MongoDB connection string (Atlas or local)
+- Google OAuth client credentials (for the “Continue with Google” button)
+
+### Install & run
+
+```bash
+git clone https://github.com/shihab-5/suunymart.git
+cd suunymart
+npm install
+npm run dev
+```
+
+The app starts on http://localhost:3000.
+
+### Available scripts
+| Command          | Description                          |
+| ---------------- | ------------------------------------ |
+| `npm run dev`    | Start the Next.js dev server         |
+| `npm run build`  | Production build                     |
+| `npm start`      | Run the production build             |
+| `npm run lint`   | ESLint check                         |
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+# MongoDB
+MONGODB_URI="mongodb+srv://<user>:<pass>@<cluster>/?retryWrites=true&w=majority"
+
+# BetterAuth — base URL of *this* app (used by the React client)
+BETTER_AUTH_URL="http://localhost:3000"        # production: https://suunymart-orpin.vercel.app
+BETTER_AUTH_SECRET="generate-a-long-random-string"
+
+# Google OAuth
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
+
+Add these same variables in your Vercel project settings for production. The Google OAuth redirect URI must include:
+
+```
+https://<your-domain>/api/auth/callback/google
+```
+
+---
+
+## 🧪 Manual Test Plan
+
+1. **Public browsing** — visit `/` and `/products` while logged out; both should render.
+2. **Protected slug** — while logged out, visit `/products/1` → should redirect to `/login`.
+3. **Profile** — while logged out, visit `/profile` → should redirect to `/login`.
+4. **Email register** — create an account at `/register`; you should land back on `/`.
+5. **Email login** — log in at `/login`; the navbar should show your avatar and name.
+6. **Google login** — click *Login with Google*; after the OAuth redirect you should be authenticated.
+7. **Detail page (logged in)** — visit `/products/1` → full product details render.
+8. **Profile update** — open *Edit Profile*, change name + image URL, submit, and verify the updated values on `/profile`.
+9. **Logout** — click Logout; visiting `/profile` again should redirect to `/login`.
+
+---
+
+## 🌟 Future Improvements
+
+- 🛒 Cart & checkout flow
+- 💳 Payment gateway (Stripe / SSLCommerz)
+- 🔍 Search, filtering, and category pages
+- ⭐ Real reviews & ratings stored in MongoDB
+- 📦 Order history per user
+
+---
+
+## 👨‍💻 Author
+
+**Shihab Ul Islam** — CSE Student, building toward an ML engineering career.
+
+---
+
+## ⭐ Support
+
+If you find this project useful:
+
+- ⭐ Star the repo
+- 🐛 Open issues for bugs / ideas
+- 🍴 Fork & build your own version
+
+<p align="center">🔥 Built with Next.js, BetterAuth, and a love for clean UI 🔥</p>
